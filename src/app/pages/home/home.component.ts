@@ -23,10 +23,11 @@ export class HomeComponent {
     this.apiReqres.login(user, password).subscribe(
       res => {
         alert("Login successful! " + res.token);
-        //console.log(res.token);
+        console.log(res.token);
       },
       err => {
         alert('Login failed!: ' + err.error.error); 
+        console.log(err.error.error);
       }
     )
   }

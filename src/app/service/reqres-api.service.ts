@@ -20,14 +20,14 @@ export class ReqresApiService {
   }
 
   private url(endpoint: string) {
-    return `https://reqres.in/api/${endpoint}`
+    return `http://192.168.100.13:80/api/${endpoint}`
   }
 
   constructor(private http: HttpClient) { }
   
   public login(user: string, password: string): Observable<any> {
     return this.http.post<any>(
-      this.url('login'),
+      this.url('user/login/'),
       this.body({
         email:user,
         password:password
