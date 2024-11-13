@@ -1,12 +1,12 @@
-import { enableProdMode, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Character } from '../models/RickAndMorty';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReqresApiService {
-
+export class RickAndMortyApiService {
   private body(data: any) {
     return JSON.stringify(data);
   }
@@ -20,18 +20,14 @@ export class ReqresApiService {
   }
 
   private url(endpoint: string) {
-    return `http://192.168.100.13:80/api/${endpoint}`
+    return `https://rickandmortyapi.com/api/${endpoint}`
   }
 
   constructor(private http: HttpClient) { }
-  
-  public login(user: string, password: string): Observable<any> {
-    return this.http.post<any>(
-      this.url('user/login/'),
-      this.body({
-        email:user,
-        password:password
-      }),
+
+  public getCharacter(): Observable<Character[]> {
+    return this.http.get<any>(
+      this.url('character'),
       this.header()
     )
   }
